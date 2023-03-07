@@ -9,8 +9,10 @@
   font-size: 62.5%;
 
   /* tipografia */
-  --ff-card: 'Staatliches', arial;
-  --ff-text: 'Palanquin', sans-serif;
+  --ff-card-mobile: 'Staatliches', arial;
+  --ff-text-mobile: 'Palanquin', sans-serif;
+  --ff-card-desktop: 'Open Sans', sans-serif;
+  --ff-text-desktop: 'Roboto', sans-serif;
 
   /* color  */
   --cl-h1: #FFFFFF;
@@ -20,22 +22,18 @@
   --cl-bg-card: #FEEAFA;
   --cl-text: #23053A;
   --cl-text-card: #4A4E69;
-}
-
-body {
-  padding: 0rem 1.5rem;
+  --cl-intro-desktop: #FFFFFF;
 }
 
 .page {
-  max-width: 384px;
-  margin: 0 auto;
+  /* max-width: 384px; */
   background-color: var(--cl-bg-boddy);
 }
 
 header {
   background-color: var(--cl-bg-heading);
-  max-width: 38.4rem;
-  height: 28rem;
+  /* max-width: 38.4rem; */
+  /* height: 28rem; */
 }
 
 img {
@@ -54,7 +52,7 @@ header img {
 }
 
 header h1 {
-  font-family: var(--ff-card);
+  font-family: var(--ff-card-mobile);
   font-style: normal;
   font-weight: 400;
   font-size: 4.0rem;
@@ -63,42 +61,46 @@ header h1 {
   text-align: center;
   letter-spacing: 0.05em;
   text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.6rem;
 
   color: #FFFFFF;
   background-color: var(--cl-bg-h1);
 }
 
 main {
-  margin: 0 auto;
   padding: 3.2rem;
   display: grid;
   gap: 3.6rem;
 }
 
-main p {
-  font-family: var(--ff-text);
+.text-mobile {
+  font-family: var(--ff-text-mobile);
   font-style: normal;
   font-weight: 400;
-  font-size: 2.0rem;
+  font-size: 2rem;
   line-height: 1.5rem;
 
-  display: flex;
-  align-items: center;
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 5.9rem;
 
   color: var(--cl-text);
+
+  max-width: 40ch;
+  margin: 0 auto;
+  padding: 2rem;
 
 }
 
 .card {
   position: relative;
+  margin: 0 auto;
+  display: grid;
 }
 
 .card h2 {
   position: absolute;
 
-  font-family: var(--ff-card);
+  font-family: var(--ff-card-mobile);
   font-size: 2rem;
   font-weight: 400;
   font-style: normal;
@@ -118,6 +120,11 @@ main p {
 
 }
 
+.cards {
+  display: grid;
+  gap: 3.2rem;
+}
+
 .card img {
   animation: topdown 700ms;
 }
@@ -126,11 +133,130 @@ main p {
   animation: downtop 700ms 350ms backwards;
 }
 
+.intro-desktop {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  body {
+    background-color: var(--cl-bg-boddy);
+  }
+
+  .page {
+    display: flex;
+    /* max-width: 128rem;
+    max-height: 72rem; */
+  }
+
+  header {
+    max-width: 37.7rem;
+    height: 100vh;
+    position: fixed;
+    flex-direction: column;
+  }
+
+  .text-mobile {
+    display: none;
+  }
+
+  .cards {
+    margin-left: 37.7rem;
+    gap: 3.2rem;
+    grid-template-areas:
+      'A B'
+      'C B'
+      'C D'
+      'E F';
+  }
+
+  .cards .card:nth-child(1) {
+    grid-area: A;
+  }
+
+  .cards .card:nth-child(2) {
+    grid-area: B;
+  }
+
+  .cards .card:nth-child(3) {
+    grid-area: D;
+  }
+
+  .cards .card:nth-child(4) {
+    grid-area: C;
+  }
+
+  .cards .card:nth-child(5) {
+    grid-area: E;
+  }
+
+  .cards .card:nth-child(6) {
+    grid-area: F;
+  }
+
+  .intro-desktop {
+    display: block;
+    color: var(--cl-intro-desktop);
+    font-family: var(--ff-text-desktop);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 1.5;
+
+    /* width: 27.5rem;   */
+    text-align: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    background-color: var(--cl-bg-boddy);
+  }
+
+
+  .intro-desktop {
+    padding: 3rem;
+    margin-top: 3.2rem;
+  }
+
+  .cards {
+    gap: 3.2rem;
+    grid-template-areas:
+      'A B C'
+      'D B E'
+      'D F E';
+  }
+
+  .cards .card:nth-child(1) {
+    grid-area: A;
+  }
+
+  .cards .card:nth-child(2) {
+    grid-area: B;
+  }
+
+  .cards .card:nth-child(3) {
+    grid-area: C;
+  }
+
+  .cards .card:nth-child(4) {
+    grid-area: D;
+  }
+
+  .cards .card:nth-child(5) {
+    grid-area: F;
+  }
+
+  .cards .card:nth-child(6) {
+    grid-area: E;
+  }
+}
+
 @keyframes topdown {
   0% {
     opacity: 0;
     transform: translateY(-15px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -142,7 +268,7 @@ main p {
     opacity: 0;
     transform: translateY(15px);
   }
-  
+
   100% {
     opacity: 1;
     transform: translateY(0);
